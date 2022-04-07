@@ -41,11 +41,22 @@ class Series(Program):
         return f"Nome da série: {self._name}  Ano: {self.year}  Temporadas: {self.season}  Likes: {self._likes}"
 
 
-class Playlist(list):
+class Playlist:
     def __init__(self, name, programs):
         self.name = name
-        super().__init__(programs)
+        self._programs = programs
 
+    @property
+    def list(self):
+        return self._programs
+
+    @property
+    def size(self):
+        return len(self._programs)
+
+    @property
+    def programs(self):
+        return self._programs
 
 
 movie1 = Movies('vingadores-guerra infinita', 2018, 160)
@@ -69,7 +80,7 @@ serie2.to_give_likes()
 movies_and_series = [movie1, serie1, movie2, serie2]
 playlist_weekend = Playlist('Fim de semana', movies_and_series)
 
-print('tamanho da playlist: {}' .format(len(movies_and_series)))
+print('Tamanho da playlist: {}' .format(len(movies_and_series)))
 
-for program in playlist_weekend:
+for program in playlist_weekend.programs:
     print(program)
