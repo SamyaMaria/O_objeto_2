@@ -19,15 +19,17 @@ class Program:
     def name(self, new_name):
         self._name = new_name.title()
 
+    def __str__(self):
+        return f'Nome: {self.name}  Likes: {self.likes}'
+
 
 class Movies(Program):
     def __init__(self, name, year, duration):
         super().__init__(name, year)
         self.duration = duration
 
-    def prints(self):
-        print("Nome do filme: {}  Ano: {}  Duração: {} min  Likes: {}".format(self._name, self.year, self.duration,
-                                                                              self._likes))
+    def __str__(self):
+        return f"Nome do filme: {self._name}  Ano: {self.year}  Duração: {self.duration} min  Likes: {self._likes}"
 
 
 class Series(Program):
@@ -35,20 +37,39 @@ class Series(Program):
         super().__init__(name, year)
         self.season = season
 
-    def prints(self):
-        print("Nome da série: {}  Ano: {}  Temporadas: {}  Likes: {}".format(self._name, self.year, self.season,
-                                                                             self._likes))
+    def __str__(self):
+        return f"Nome da série: {self._name}  Ano: {self.year}  Temporadas: {self.season}  Likes: {self._likes}"
+
+
+class Playlist(list):
+    def __init__(self, name, programs):
+        self.name = name
+        super().__init__(programs)
+
 
 
 movie1 = Movies('vingadores-guerra infinita', 2018, 160)
 movie1.to_give_likes()
+movie1.to_give_likes()
+movie1.to_give_likes()
 
 movie2 = Movies('animais fantásticos', 2017, 180)
+movie2.to_give_likes()
 
 serie1 = Series('atlanta', 2018, 3)
 serie1.to_give_likes()
 serie1.to_give_likes()
 
-movies_e_series = [movie1, serie1, movie2]
-for program in movies_e_series:
-    program.prints()
+serie2 = Series('the big bang theory', 2006, 12)
+serie2.to_give_likes()
+serie2.to_give_likes()
+serie2.to_give_likes()
+serie2.to_give_likes()
+
+movies_and_series = [movie1, serie1, movie2, serie2]
+playlist_weekend = Playlist('Fim de semana', movies_and_series)
+
+print('tamanho da playlist: {}' .format(len(movies_and_series)))
+
+for program in playlist_weekend:
+    print(program)
